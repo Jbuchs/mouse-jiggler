@@ -49,33 +49,34 @@ void setup() {
 }
 
 void loop() {
-  // random distance, speed and direction
-  pxToMove = random(100, 300);
-  speed = random(5, 50);
-  do {
-    xDir = random(-1, 2);
-  } while(xDir == 0);
-  do {
-    yDir = random(-1, 2);
-  } while(yDir == 0);
-
-
-  // move the mouse if switched on
   if (mode) {
-    // move the mouse
+    // random distance, speed and direction
+    pxToMove = random(100, 300);
+    speed = random(5, 50);
+    do {
+      xDir = random(-1, 2);
+    } while(xDir == 0);
+    do {
+      yDir = random(-1, 2);
+    } while(yDir == 0);
+
+
+    // move the mouse if switched on
     for (int i=0;i<=pxToMove;i++) {
-      Mouse.move(xDir, yDir, wheel);
-      delay(speed);
+      if (mode) {
+        Mouse.move(xDir, yDir, wheel);
+        delay(speed);
+      }
     }
 
     // move the mouse back
     for (int j=0;j<=pxToMove;j++) {
-      Mouse.move(-(xDir), -(yDir), wheel);
-      delay(speed);
+      if (mode) {
+        Mouse.move(-(xDir), -(yDir), wheel);
+        delay(speed);
+      }
     }
-
   }
-  
 }
 
 void changeMode() {
